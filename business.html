@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Matrix Admin</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <style>
+        #btn-id {
+            padding: 1px 5px;
+            font-size: 12px;
+            line-height: 1.5;
+            border-radius: 3px;
+        }
+    </style>
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/bootstrap-responsive.min.css"/>
+    <link rel="stylesheet" href="css/matrix-style.css"/>
+    <link rel="stylesheet" href="css/matrix-media.css"/>
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet"/>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+    <link href="css/select2.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/animation.css">
+    <link href="css/bootstrap-select.min.css" rel="stylesheet" media="screen"/>
+</head>
+<body>
+
+<!--Header-part-->
+<div id="header">
+    <h1 class="logo"><a href="index.html">掌上洗衣</a></h1>
+</div>
+<!--close-Header-part-->
+
+<!--top-Header-menu-->
+<div id="user-nav" class="navbar navbar-inverse">
+    <ul class="nav">
+        <li class="dropdown color" id="profile-messages"><a title="" href="#" data-toggle="dropdown"
+                                                            data-target="#profile-messages" class="dropdown-toggle"><i
+                class="icon icon-user"></i> <span class="text">欢迎管理员</span></a>
+        </li>
+        <li class="dropdown" id="menu-messages"><a href="#" data-toggle="dropdown" data-target="#menu-messages"
+                                                   class="dropdown-toggle"><i class="icon icon-envelope"></i> <span
+                class="text">消息</span> <span class="label label-important">5</span> <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li><a class="sAdd" title="" href="message.html"><i class="icon-plus"></i>新消息</a></li>
+                <li class="divider"></li>
+                <li><a class="sInbox" title="" href="messageBox.html"><i class="icon-envelope"></i> 消息盒子</a></li>
+                <li class="divider"></li>
+                <li><a class="sTrash" title="" href="trash.html"><i class="icon-trash"></i> 垃圾箱</a></li>
+            </ul>
+        </li>
+        <li class=""><a title="" href="login.html"><i class="icon icon-share-alt"></i> <span
+                class="text">退出登录</span></a></li>
+    </ul>
+</div>
+
+<!--start-top-serch-->
+<div id="search">
+    <input type="text" placeholder="Search here..."/>
+    <button type="submit" class="tip-bottom" title="Search" style="background-color: #0bc2f3"><i
+            class="icon-search icon-white"></i></button>
+</div>
+
+
+<div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i> 首页</a>
+    <ul>
+        <li><a href="chart.html"><i class="icon icon-building"></i> <span>报表一览</span></a></li>
+        <li class="submenu"><a href=""><i class="icon icon-signal"></i> <span>广告统计</span> <span
+                class="label label-important">3</span></a>
+            <ul>
+                <li><a href="advertising-chart.html"><i class="icon icon-bar-chart"></i><span>&nbsp&nbsp&nbsp广告报表</span></a>
+                </li>
+                <li><a href="advertising-history.html"><i
+                        class="icon icon-eye-close"></i><span>&nbsp&nbsp&nbsp历史投放</span></a></li>
+                <li><a href="advertising-now.html"><i
+                        class="icon icon-eye-open"></i><span>&nbsp&nbsp&nbsp当前投放</span></a></li>
+            </ul>
+        </li>
+        <li class="active"><a href="business.html"><i class="icon icon-user"></i> <span>商家信息</span></a></li>
+        <li><a href="students.html"><i class="icon icon-user-md"></i> <span>学生信息</span></a></li>
+        <li><a href="map.html"><i class="icon icon-map-marker"></i> <span>商家一览</span></a></li>
+
+    </ul>
+
+    <canvas id="clock" width="200px" height="200px" style="position: fixed;bottom: 30px;left: 0;">
+        你的浏览器太老了不支持canvas标签，看不到时钟！
+    </canvas>
+    <span id="timer" style="position: fixed;bottom: 20px;left:37px; font-size: 30px"></span>
+
+</div>
+<div id="content">
+<div id="content-header">
+    <div id="breadcrumb">
+        <a href="chart.html" title="跳转到报表" class="tip-bottom"><i class="icon icon-building"></i> 报表一览</a>
+        <a href="business.html" title="跳转到商家信息" class="current tip-bottom"><i class="icon icon-user"></i>商家信息</a>
+    </div>
+</div>
+
+<form class="form-horizontal" method="GET" style="text-align: center">
+
+
+    <select name="type" class="selectpicker" data-size="3" title="省份">
+        <option>四川</option>
+        <option>南京</option>
+        <option>黑龙江</option>
+        <option>云南</option>
+        <option>台湾</option>
+    </select>
+
+    <select name="type" class="selectpicker" data-size="3" title="城市">
+        <option>成都</option>
+        <option>南充</option>
+        <option>自贡</option>
+        <option>遂宁</option>
+        <option>攀枝花</option>
+    </select>
+
+    <select name="type" class="selectpicker" data-size="3" title="学校">
+        <option>成都大学</option>
+        <option>四川大学</option>
+        <option>成都理工大学</option>
+        <option>四川师范学院</option>
+    </select>
+
+    <button type="button" class="btn btn-info" style="margin-left: 1%">搜索</button>
+</form>
+
+    <div class="widget-box" style="width: 96%;margin-left: 2%;font-size: 20px;">
+        <div class="widget-title">
+			<span class="icon">
+				<i class="icon-th"></i>
+			</span>
+            <h5>商家信息</h5>
+            <div style="position: absolute;top: 1%;right: 1%">
+                <input type="text" class="form-control" placeholder="输入名字查询" style="border-right: none;">
+                <button class="btn btn-info" style="margin-bottom: 3.5%;margin-left: -2%">查询</button>
+            </div>
+        </div>
+        <div class="widget-content nopadding">
+            <table class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th style="font-size: 12px">商家信息</th>
+                    <th style="font-size: 12px">姓名</th>
+                    <th style="font-size: 12px">性别</th>
+                    <th style="font-size: 12px">手机号</th>
+                    <th style="font-size: 12px">账号</th>
+                    <th style="font-size: 12px">邮箱</th>
+                    <th style="font-size: 12px">转账账号</th>
+                    <th style="font-size: 12px">活动金额</th>
+                    <th style="font-size: 12px">身份证</th>
+                    <th style="font-size: 12px">提成比例</th>
+                    <th style="font-size: 12px">注册时间</th>
+                    <th style="font-size: 12px">联系地址</th>
+                    <th style="font-size: 12px">查看洗衣机</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td id="center">无</td>
+                    <td id="center">刘超</td>
+                    <td id="center">男</td>
+                    <td id="center">13597849286</td>
+                    <td id="center">543579864</td>
+                    <td id="center">23850385@qq.com</td>
+                    <td id="center">13597849286</td>
+                    <td id="center">2000</td>
+                    <td id="center">510386940692448603</td>
+                    <td id="center">0.0001</td>
+                    <td id="center">2010-05-31</td>
+                    <td id="center">四川省成都市</td>
+                    <td id="center">
+                        <a href="useInformation.html">
+                            <button type="button" id="btn-id" class="btn btn-primary">查看</button>
+                        </a>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td id="center">无</td>
+                    <td id="center">王曹伟</td>
+                    <td id="center">男</td>
+                    <td id="center">13847079836</td>
+                    <td id="center">23487jsaf</td>
+                    <td id="center">5489657@qq.com</td>
+                    <td id="center">13847079836</td>
+                    <td id="center">400</td>
+                    <td id="center">510386989692468605</td>
+                    <td id="center">0.0001</td>
+                    <td id="center">2011-05-31</td>
+                    <td id="center">北京市</td>
+                    <td id="center">
+                        <a href="useInformation.html">
+                            <button type="button" id="btn-id" class="btn btn-primary">查看</button>
+                        </a>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td id="center">无</td>
+                    <td id="center">李建</td>
+                    <td id="center">男</td>
+                    <td id="center">13847603864</td>
+                    <td id="center">fjkahdfs110</td>
+                    <td id="center">sfajkl@163.com</td>
+                    <td id="center">13847603864</td>
+                    <td id="center">30000</td>
+                    <td id="center">510386309699068268</td>
+                    <td id="center">0.0001</td>
+                    <td id="center">2012-12-31</td>
+                    <td id="center">江苏省南京市</td>
+                    <td id="center">
+                        <a href="useInformation.html">
+                            <button type="button" id="btn-id" class="btn btn-primary">查看</button>
+                        </a>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td id="center">无</td>
+                    <td id="center">王伟</td>
+                    <td id="center">男</td>
+                    <td id="center">13523890863</td>
+                    <td id="center">4328110</td>
+                    <td id="center">3189566@sina.com</td>
+                    <td id="center">13523890863</td>
+                    <td id="center">10000</td>
+                    <td id="center">510396309634068306</td>
+                    <td id="center">0.0001</td>
+                    <td id="center">2012-04-26</td>
+                    <td id="center">上海市</td>
+                    <td id="center">
+                        <a href="useInformation.html">
+                            <button type="button" id="btn-id" class="btn btn-primary">查看</button>
+                        </a>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td id="center">无</td>
+                    <td id="center">刘超</td>
+                    <td id="center">男</td>
+                    <td id="center">13597849286</td>
+                    <td id="center">543579864</td>
+                    <td id="center">23850385@qq.com</td>
+                    <td id="center">13597849286</td>
+                    <td id="center">2000</td>
+                    <td id="center">510386940692448603</td>
+                    <td id="center">0.0001</td>
+                    <td id="center">2010-05-31</td>
+                    <td id="center">四川省成都市</td>
+                    <td id="center">
+                        <a href="useInformation.html">
+                            <button type="button" id="btn-id" class="btn btn-primary">查看</button>
+                        </a>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td id="center">无</td>
+                    <td id="center">王曹伟</td>
+                    <td id="center">男</td>
+                    <td id="center">13847079836</td>
+                    <td id="center">23487jsaf</td>
+                    <td id="center">5489657@qq.com</td>
+                    <td id="center">13847079836</td>
+                    <td id="center">400</td>
+                    <td id="center">510386989692468605</td>
+                    <td id="center">0.0001</td>
+                    <td id="center">2011-05-31</td>
+                    <td id="center">北京市</td>
+                    <td id="center">
+                        <a href="useInformation.html">
+                            <button type="button" id="btn-id" class="btn btn-primary">查看</button>
+                        </a>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td id="center">无</td>
+                    <td id="center">李建</td>
+                    <td id="center">男</td>
+                    <td id="center">13847603864</td>
+                    <td id="center">fjkahdfs110</td>
+                    <td id="center">sfajkl@163.com</td>
+                    <td id="center">13847603864</td>
+                    <td id="center">30000</td>
+                    <td id="center">510386309699068268</td>
+                    <td id="center">0.0001</td>
+                    <td id="center">2012-12-31</td>
+                    <td id="center">江苏省南京市</td>
+                    <td id="center">
+                        <a href="useInformation.html">
+                            <button type="button" id="btn-id" class="btn btn-primary">查看</button>
+                        </a>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td id="center">无</td>
+                    <td id="center">王伟</td>
+                    <td id="center">男</td>
+                    <td id="center">13523890863</td>
+                    <td id="center">4328110</td>
+                    <td id="center">3189566@sina.com</td>
+                    <td id="center">13523890863</td>
+                    <td id="center">10000</td>
+                    <td id="center">510396309634068306</td>
+                    <td id="center">0.0001</td>
+                    <td id="center">2012-04-26</td>
+                    <td id="center">上海市</td>
+                    <td id="center">
+                        <a href="useInformation.html">
+                            <button type="button" id="btn-id" class="btn btn-primary">查看</button>
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+<ul class="pager nopadding nomargin">
+    <li class=""><a href="useInformation.html">上一页</a></li>
+    <li class=""><a href="useInformation.html">1</a></li>
+    <li class=""><a href="useInformation.html">2</a></li>
+    <li class=""><a href="useInformation.html">3</a></li>
+    <li class=""><a href="useInformation.html">...</a></li>
+    <li class=""><a href="useInformation.html">末页</a></li>
+    <li class=""><a href="useInformation.html">下一页</a></li>
+</ul>
+</div>
+
+<!--Footer-part-->
+<div class="row-fluid">
+    <div id="footer" class="span12"> 2013 &copy; Matrix Admin. Brought to you by <a href="http://themedesigner.in/">Themedesigner.in</a>
+    </div>
+</div>
+<!--end-Footer-part-->
+<script src="js/excanvas.min.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.ui.custom.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.flot.min.js"></script>
+<script src="js/jquery.flot.resize.min.js"></script>
+<script src="js/jquery.peity.min.js"></script>
+<script src="js/fullcalendar.min.js"></script>
+<script src="js/matrix.js"></script>
+<script src="js/matrix.dashboard.js"></script>
+<script src="js/jquery.gritter.min.js"></script>
+<script src="js/matrix.interface.js"></script>
+<script src="js/matrix.chat.js"></script>
+<script src="js/jquery.validate.js"></script>
+<script src="js/matrix.form_validation.js"></script>
+<script src="js/jquery.wizard.js"></script>
+<script src="js/jquery.uniform.js"></script>
+<script src="js/select2.min.js"></script>
+<script src="js/matrix.popover.js"></script>
+<script src="js/jquery.dataTables.min.js"></script>
+<script src="js/matrix.tables.js"></script>
+<script src="js/bootstrap.js"></script>
+<script type="text/javascript" src="js/bootstrap-select.min.js"></script>
+<script src="js/time.js"></script>
+<script type="text/javascript">
+    // This function is called from the pop-up menus to transfer to
+    // a different page. Ignore if the value returned is a null string:
+    function goPage(newURL) {
+
+        // if url is empty, skip the menu dividers and reset the menu selection to default
+        if (newURL != "") {
+
+            // if url is "-", it is this page -- reset the menu:
+            if (newURL == "-") {
+                resetMenu();
+            }
+            // else, send page to designated URL
+            else {
+                document.location.href = newURL;
+            }
+        }
+    }
+
+    // resets the menu selection upon entry to this page:
+    function resetMenu() {
+        document.gomenu.selector.selectedIndex = 2;
+    }
+
+    $(function () {
+
+//下拉菜单
+        $('.selectpicker').selectpicker({noneSelectedText: '请选择'});
+        $('.selectpicker').selectpicker('val', $('.selectpicker').attr('value'));
+
+    })
+
+    window.onload = function () {
+        setInterval(function () {
+            document.getElementById("timer").innerHTML = (new Date()).toLocaleTimeString();
+        }, 1000);
+    };
+
+</script>
+</body>
+</html>

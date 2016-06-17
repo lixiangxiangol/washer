@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Matrix Admin</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="css/bootstrap.min.css" />
+<link rel="stylesheet" href="css/bootstrap-responsive.min.css" />
+<link rel="stylesheet" href="css/jquery.gritter.css" />
+<link rel="stylesheet" href="css/matrix-style.css" />
+<link rel="stylesheet" href="css/matrix-media.css" />
+<link href="font-awesome/css/font-awesome.css" rel="stylesheet" />
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="css/animation.css">
+    <style type="text/css">
+        .iw_poi_title {color:#CC5522;font-size:14px;font-weight:bold;overflow:hidden;padding-right:13px;white-space:nowrap}
+        .iw_poi_content {font:12px arial,sans-serif;overflow:visible;padding-top:4px;white-space:-moz-pre-wrap;word-wrap:break-word}
+    </style>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?key=&v=1.1&services=true"></script>
+</head>
+<body>
+
+<!--Header-part-->
+<div id="header">
+    <h1 class="logo"><a href="index.html">掌上洗衣</a></h1>
+</div>
+<!--close-Header-part--> 
+
+<!--top-Header-menu-->
+<div id="user-nav" class="navbar navbar-inverse">
+    <ul class="nav">
+        <li class="dropdown color" id="profile-messages"><a title="" href="#" data-toggle="dropdown"
+                                                            data-target="#profile-messages" class="dropdown-toggle"><i
+                class="icon icon-user"></i> <span class="text">欢迎管理员</span></a>
+        </li>
+        <li class="dropdown" id="menu-messages"><a href="#" data-toggle="dropdown" data-target="#menu-messages"
+                                                   class="dropdown-toggle"><i class="icon icon-envelope"></i> <span
+                class="text">消息</span> <span class="label label-important">5</span> <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li><a class="sAdd" title="" href="message.html"><i class="icon-plus"></i>新消息</a></li>
+                <li class="divider"></li>
+                <li><a class="sInbox" title="" href="messageBox.html"><i class="icon-envelope"></i> 消息盒子</a></li>
+                <li class="divider"></li>
+                <li><a class="sTrash" title="" href="trash.html"><i class="icon-trash"></i> 垃圾箱</a></li>
+            </ul>
+        </li>
+        <li class=""><a title="" href="login.html"><i class="icon icon-share-alt"></i> <span
+                class="text">退出登录</span></a></li>
+    </ul>
+</div>
+
+<!--start-top-serch-->
+<div id="search">
+  <input type="text" placeholder="Search here..."/>
+  <button type="submit" class="tip-bottom" title="Search" style="background-color: #0bc2f3"><i class="icon-search icon-white"></i></button>
+</div>
+<!--close-top-serch-->
+
+
+
+<div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i> 首页</a>
+    <ul>
+        <li> <a href="chart.html"><i class="icon icon-building"></i> <span>报表一览</span></a></li>
+        <li class="submenu"><a href=""><i class="icon icon-signal"></i> <span>广告统计</span> <span class="label label-important">3</span></a>
+            <ul>
+                <li><a href="advertising-chart.html"><i class="icon icon-bar-chart"></i><span>&nbsp&nbsp&nbsp广告报表</span></a></li>
+                <li><a href="advertising-history.html"><i class="icon icon-eye-close"></i><span>&nbsp&nbsp&nbsp历史投放</span></a></li>
+                <li><a href="advertising-now.html"><i class="icon icon-eye-open"></i><span>&nbsp&nbsp&nbsp当前投放</span></a></li>
+            </ul>
+        </li>
+        <li> <a href="business.html"><i class="icon icon-user"></i> <span>商家信息</span></a></li>
+        <li> <a href="students.html"><i class="icon icon-user-md"></i> <span>学生信息</span></a> </li>
+        <li class="active"><a href="map.html"><i class="icon icon-map-marker"></i> <span>商家一览</span></a></li>
+
+    </ul>
+
+    <canvas id="clock" width="200px" height="200px" style="position: fixed;bottom: 30px;left: 0;">
+        你的浏览器太老了不支持canvas标签，看不到时钟！
+    </canvas>
+    <span id="timer" style="position: fixed;bottom: 20px;left:37px; font-size: 30px"></span>
+
+</div>
+
+
+<div id="content" style="height: 100%">
+    <div id="content-header">
+        <div id="breadcrumb">
+            <a href="chart.html" title="跳转到报表" class="tip-bottom"><i class="icon icon-building"></i> 报表一览</a>
+            <a href="map.html" title="跳转到商家一览" class="current tip-bottom"><i class="icon icon-user-md"></i>商家一览</a> </div>
+    </div>
+    <div style="width:100%;height:99%;border:#ccc solid 1px;" id="dituContent"></div>
+</div>
+
+
+
+        <!--Footer-part-->
+<div class="row-fluid">
+  <div id="footer" class="span12"> 2013 &copy; Matrix Admin. Brought to you by <a href="http://themedesigner.in/">Themedesigner.in</a> </div>
+</div>
+<!--End-Footer-part-->
+<script src="js/jquery.min.js"></script> 
+<script src="js/jquery.ui.custom.js"></script> 
+<script src="js/bootstrap.min.js"></script> 
+<script src="js/jquery.gritter.min.js"></script> 
+<script src="js/jquery.peity.min.js"></script> 
+<script src="js/matrix.js"></script> 
+<script src="js/matrix.interface.js"></script> 
+<script src="js/matrix.popover.js"></script>
+<script src="js/time.js"></script>
+<script type="text/javascript">
+    //创建和初始化地图函数：
+    function initMap(){
+        createMap();//创建地图
+        setMapEvent();//设置地图事件
+        addMapControl();//向地图添加控件
+        addMarker();//向地图中添加marker
+    }
+
+    //创建地图函数：
+    function createMap(){
+        var map = new BMap.Map("dituContent");//在百度地图容器中创建一个地图
+        var point = new BMap.Point(104.1947,30.65545);//定义一个中心点坐标
+        map.centerAndZoom(point,13);//设定地图的中心点和坐标并将地图显示在地图容器中
+        window.map = map;//将map变量存储在全局
+    }
+
+    //地图事件设置函数：
+    function setMapEvent(){
+        map.enableDragging();//启用地图拖拽事件，默认启用(可不写)
+        map.enableScrollWheelZoom();//启用地图滚轮放大缩小
+        map.enableDoubleClickZoom();//启用鼠标双击放大，默认启用(可不写)
+        map.enableKeyboard();//启用键盘上下左右键移动地图
+    }
+
+    //地图控件添加函数：
+    function addMapControl(){
+        //向地图中添加缩放控件
+        var ctrl_nav = new BMap.NavigationControl({anchor:BMAP_ANCHOR_TOP_LEFT,type:BMAP_NAVIGATION_CONTROL_LARGE});
+        map.addControl(ctrl_nav);
+        //向地图中添加缩略图控件
+        var ctrl_ove = new BMap.OverviewMapControl({anchor:BMAP_ANCHOR_BOTTOM_RIGHT,isOpen:1});
+        map.addControl(ctrl_ove);
+        //向地图中添加比例尺控件
+        var ctrl_sca = new BMap.ScaleControl({anchor:BMAP_ANCHOR_BOTTOM_LEFT});
+        map.addControl(ctrl_sca);
+    }
+
+    //标注点数组
+    var markerArr = [
+        {title:"成都大学",content:"成都市外东十陵镇上街1号	",point:"104.191619|30.654891",isOpen:0,icon:{w:21,h:21,l:0,t:0,x:6,lb:5}},
+        {title:"成都中医药大学",content:"柳台大道西段1166号",point:"103.814046|30.692435",isOpen:0,icon:{w:21,h:21,l:0,t:0,x:6,lb:5}},
+        {title:"四川农业大学(成都校区)",content:"四川省成都市温江区惠民路211号",point:"103.868541|30.711462",isOpen:0,icon:{w:21,h:21,l:0,t:0,x:6,lb:5}},
+        {title:"成都中医药大学人民南路校区",content:"武侯区人民南路四段15号",point:"104.073464|30.63238",isOpen:0,icon:{w:21,h:21,l:0,t:0,x:6,lb:5}},
+        {title:"成都广播电视大学",content:"大石西路56号",point:"104.038721|30.657454",isOpen:0,icon:{w:21,h:21,l:0,t:0,x:6,lb:5}},
+        {title:"四川师范大学",content:"四川师范大学(成龙大道) 附近",point:"104.207762|30.571588",isOpen:0,icon:{w:21,h:21,l:0,t:0,x:6,lb:5}},
+        {title:"西南石油大学（成都校区）",content:"新都大道8号",point:"104.190488|30.831667",isOpen:0,icon:{w:21,h:21,l:0,t:0,x:6,lb:5}},
+        {title:"成都理工大学",content:"三环以内二仙桥东三路1号	",point:"104.150675|30.679034",isOpen:0,icon:{w:21,h:21,l:0,t:0,x:6,lb:5}},
+        {title:"四川大学(望江校区)",content:"成都市武侯区科华北路和一环路",point:"104.089408|30.636986",isOpen:0,icon:{w:21,h:21,l:0,t:0,x:6,lb:5}}];
+
+    //创建marker
+    function addMarker(){
+        for(var i=0;i<markerArr.length;i++){
+            var json = markerArr[i];
+            var p0 = json.point.split("|")[0];
+            var p1 = json.point.split("|")[1];
+            var point = new BMap.Point(p0,p1);
+            var iconImg = createIcon(json.icon);
+            var marker = new BMap.Marker(point);
+            var iw = createInfoWindow(i);
+            var label = new BMap.Label(json.title,{"offset":new BMap.Size(json.icon.lb-json.icon.x+10,-20)});
+            marker.setLabel(label);
+            map.addOverlay(marker);
+            label.setStyle({
+                borderColor:"#808080",
+                color:"#333",
+                cursor:"pointer"
+            });
+
+            (function(){
+                var index = i;
+                var _iw = createInfoWindow(i);
+                var _marker = marker;
+                _marker.addEventListener("click",function(){
+                    this.openInfoWindow(_iw);
+                });
+                _iw.addEventListener("open",function(){
+                    _marker.getLabel().hide();
+                })
+                _iw.addEventListener("close",function(){
+                    _marker.getLabel().show();
+                })
+                label.addEventListener("click",function(){
+                    _marker.openInfoWindow(_iw);
+                })
+                if(!!json.isOpen){
+                    label.hide();
+                    _marker.openInfoWindow(_iw);
+                }
+            })()
+        }
+    }
+    //创建InfoWindow
+    function createInfoWindow(i){
+        var json = markerArr[i];
+        var iw = new BMap.InfoWindow("<b class='iw_poi_title' title='" + json.title + "'>" + json.title + "</b><div class='iw_poi_content'>"+json.content+"</div>");
+        return iw;
+    }
+    //创建一个Icon
+    function createIcon(json){
+        var icon = new BMap.Icon("http://app.baidu.com/map/images/us_mk_icon.png", new BMap.Size(json.w,json.h),{imageOffset: new BMap.Size(-json.l,-json.t),infoWindowOffset:new BMap.Size(json.lb+5,1),offset:new BMap.Size(json.x,json.h)})
+        return icon;
+    }
+
+    initMap();//创建和初始化地图
+    window.onload = function () {
+        setInterval(function () {
+            document.getElementById("timer").innerHTML = (new Date()).toLocaleTimeString();
+        }, 1000);
+    };
+</script>
+</body>
+</html>

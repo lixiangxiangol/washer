@@ -1,0 +1,75 @@
+.border li:first-child>a:before{
+    content: "";
+    left: 40px;
+    top:-6px;
+  position: absolute;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-bottom: 6px solid #808080;
+    border-top: 0;
+}
+.border li{
+    cursor: pointer;
+}
+
+.box{
+    width: 71.8%;
+    clear: both;
+    overflow: hidden;
+    margin-left: 15%;
+    margin-top: 3%;
+    border: 2px solid #efefef;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.27),0 0 60px rgba(0,0,0,0.1) inset;
+    -webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.27),0 0 60px rgba(0,0,0,0.1) inset;
+    -moz-box-shadow: 0 1px 4px rgba(0,0,0,0.27),0 0 60px rgba(0,0,0,0.1) inset;
+    -o-box-shadow: 0 1px 4px rgba(0,0,0,0.27),0 0 60px rgba(0,0,0,0.1) inset;
+    -ms-box-shadow: 0 1px 4px rgba(0,0,0,0.27),0 0 60px rgba(0,0,0,0.1) inset;
+}
+
+.box img{
+    display: block;
+    margin: 5px;
+}
+
+.box img:before{
+    content: '';
+    position: absolute;
+    width: 90%;
+    height: 80%;
+    left: 20px;
+    bottom: 8px;
+    background: transparent;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+    -webkit-box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+    -moz-box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+    -o-box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+    -ms-box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+    transform:skew(-12deg) rotate(-4deg);
+    -webkit-transform:skew(-12deg) rotate(-4deg);
+    -moz-transform:skew(-12deg) rotate(-4deg);
+    -o-transform:skew(-12deg) rotate(-4deg);
+    -ms-transform:skew(-12deg) rotate(-4deg);
+    z-index: -2;
+}
+
+.box img:after{
+    content: '';
+    position: absolute;
+    width: 90%;
+    height: 80%;
+    left: 20px;
+    bottom: 8px;
+    background: transparent;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+    -webkit-box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+    -moz-box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+    -o-box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+    -ms-box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+    transform:skew(12deg) rotate(4deg);
+    -webkit-transform:skew(12deg) rotate(4deg);
+    -moz-transform:skew(12deg) rotate(4deg);
+    -o-transform:skew(12deg) rotate(4deg);
+    -ms-transform:skew(12deg) rotate(4deg);
+    z-index: -2;
+}
+

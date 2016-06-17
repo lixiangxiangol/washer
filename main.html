@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>3D立体折页焦点图HTML5网页特效</title>
+    <meta name="keywords" content="JS代码,焦点图,3D焦点图,HTML5特效" />
+    <meta name="description" content="一款3D立体折页焦点图HTML5网页特效，点击左右按钮立体旋转切换图片，动画下拉画布显示文字，支持火狐、IE9以上等支持HTML5+CSS3浏览器。" />
+    <link rel="stylesheet" type="text/css" href="css/demo.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <style type="text/css">
+        body,td,th { font-family: "Open Sans Condensed", "Arial Narrow", serif; }
+    </style>
+    <script type="text/javascript" src="js/modernizr.custom.js"></script>
+    <!--[if lte IE 8]><style>.main{display:none;} .support-note .note-ie{display:block;}</style><![endif]-->
+</head>
+<body class="keBody">
+<div class="kePublic">
+    <!--效果html开始-->
+    <div class="container">
+        <div class="main">
+            <div class="fs-slider" id="fs-slider">
+                <figure>
+                    <img src="images/1.jpg" alt="image01" />
+                    <figcaption>
+                        <h3></h3>
+                        <p></p>
+                    </figcaption>
+                </figure>
+
+                <figure>
+                    <img src="images/2.jpg" alt="image02" />
+                    <figcaption>
+                        <h3>海尔洗衣机</h3>
+                        <p>省心、省钱、更省力 </p>
+                    </figcaption>
+                </figure>
+
+                <figure>
+                    <img src="images/3.jpg" alt="image03" />
+                    <figcaption>
+                        <h3>微信操控洗衣机</h3>
+                        <p>高端、大气、上档次</p>
+                    </figcaption>
+                </figure>
+
+                <figure>
+                    <img src="images/4.jpg" alt="image04" />
+                    <figcaption>
+                        <h3></h3>
+                        <p></p>
+                    </figcaption>
+                </figure>
+
+                <figure>
+                    <img src="images/5.jpg" alt="image05" />
+                    <figcaption>
+                        <h3></h3>
+                        <p></p>
+                    </figcaption>
+                </figure>
+            </div><!-- /fs-slider -->
+        </div>
+    </div>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/jquery.imgslider.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $( '#fs-slider' ).imgslider();
+        });
+    </script>
+</div>
+</body>
+</html>

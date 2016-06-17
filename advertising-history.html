@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>Matrix Admin</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/bootstrap-responsive.min.css"/>
+    <link rel="stylesheet" href="css/fullcalendar.css"/>
+    <link rel="stylesheet" href="css/matrix-style.css"/>
+    <link rel="stylesheet" href="css/matrix-media.css"/>
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/jquery.gritter.css"/>
+    <link rel="stylesheet" href="css/select2.css"/>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/animation.css">
+</head>
+<body>
+
+<!--Header-part-->
+<div id="header">
+    <h1 class="logo"><a href="index.html">掌上洗衣</a></h1>
+</div>
+<!--close-Header-part-->
+
+
+<!--top-Header-menu-->
+<div id="user-nav" class="navbar navbar-inverse">
+    <ul class="nav">
+        <li class="dropdown color" id="profile-messages"><a title="" href="#" data-toggle="dropdown"
+                                                            data-target="#profile-messages" class="dropdown-toggle"><i
+                class="icon icon-user"></i> <span class="text">欢迎管理员</span></a>
+        </li>
+        <li class="dropdown" id="menu-messages"><a href="#" data-toggle="dropdown" data-target="#menu-messages"
+                                                   class="dropdown-toggle"><i class="icon icon-envelope"></i> <span
+                class="text">消息</span> <span class="label label-important">5</span> <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li><a class="sAdd" title="" href="message.html"><i class="icon-plus"></i>新消息</a></li>
+                <li class="divider"></li>
+                <li><a class="sInbox" title="" href="messageBox.html"><i class="icon-envelope"></i> 消息盒子</a></li>
+                <li class="divider"></li>
+                <li><a class="sTrash" title="" href="trash.html"><i class="icon-trash"></i> 垃圾箱</a></li>
+            </ul>
+        </li>
+        <li class=""><a title="" href="login.html"><i class="icon icon-share-alt"></i> <span
+                class="text">退出登录</span></a></li>
+    </ul>
+</div>
+<!--close-top-Header-menu-->
+<!--start-top-serch-->
+<div id="search">
+    <input type="text" placeholder="Search here..."/>
+    <button type="submit" class="tip-bottom" title="Search" style="background-color: #0bc2f3"><i
+            class="icon-search icon-white"></i></button>
+</div>
+<!--close-top-serch-->
+<!--sidebar-menu-->
+<div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i> 首页</a>
+    <ul>
+        <li><a href="chart.html"><i class="icon icon-building"></i> <span>报表一览</span></a></li>
+        <li class="submenu"><a href=""><i class="icon icon-signal"></i> <span>广告统计</span> <span
+                class="label label-important">3</span></a>
+            <ul>
+                <li><a href="advertising-chart.html"><i class="icon icon-bar-chart"></i><span>&nbsp&nbsp&nbsp广告报表</span></a>
+                </li>
+                <li class="active"><a href="advertising-history.html"><i class="icon icon-eye-close"></i><span>&nbsp&nbsp&nbsp历史投放</span></a>
+                </li>
+                <li><a href="advertising-now.html"><i
+                        class="icon icon-eye-open"></i><span>&nbsp&nbsp&nbsp当前投放</span></a></li>
+            </ul>
+        </li>
+        <li><a href="business.html"><i class="icon icon-user"></i> <span>商家信息</span></a></li>
+        <li><a href="students.html"><i class="icon icon-user-md"></i> <span>学生信息</span></a></li>
+        <li><a href="map.html"><i class="icon icon-map-marker"></i> <span>商家一览</span></a></li>
+
+    </ul>
+
+    <canvas id="clock" width="200px" height="200px" style="position: fixed;bottom: 30px;left: 0;">
+        你的浏览器太老了不支持canvas标签，看不到时钟！
+    </canvas>
+    <span id="timer" style="position: fixed;bottom: 20px;left:37px; font-size: 30px"></span>
+
+</div>
+<!--sidebar-menu-->
+<!--main-container-part-->
+<div id="content">
+    <!--breadcrumbs-->
+    <div id="content-header">
+        <div id="breadcrumb">
+            <a href="chart.html" title="跳转到报表" class="tip-bottom"><i class="icon icon-building"></i> 报表一览</a>
+            <a href="advertising-history.html" title="跳转到历史投放" class="current tip-bottom"><i
+                    class="icon icon-signal"></i>历史投放</a>
+        </div>
+    </div>
+    <!--End-breadcrumbs-->
+
+
+    <!--Chart-box-->
+    <div class="widget-box" style="width: 96%;margin-left: 2%;font-size: 20px;">
+        <div class="widget-title">
+			<span class="icon">
+				<i class="icon-th"></i>
+			</span>
+            <h5>历史投放</h5>
+            <div style="position: absolute;top: 1%;right: 1%">
+                <input type="text" class="form-control" placeholder="输入名字查询" style="border-right: none;">
+                <button class="btn btn-info" style="margin-bottom: 3.5%;margin-left: -2%">查询</button>
+            </div>
+        </div>
+        <div class="widget-content nopadding">
+            <table class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                <th style="font-size: 12px">广告投放商</th>
+                <th style="font-size: 12px">金额</th>
+                <th style="font-size: 12px">投放时间</th>
+                <th style="font-size: 12px">截止时间</th>
+                <th style="font-size: 12px">投放位置</th>
+                <th style="font-size: 12px">点击量</th>
+                <th style="font-size: 12px">内容</th>
+            </tr>
+            <tr>
+                <td id="center">海尔</td>
+                <td id="center">100000</td>
+                <td id="center">2013-05-23</td>
+                <td id="center">2015-05-23</td>
+                <td id="center">商家APP首页</td>
+                <td id="center">48606</td>
+                <td id="center">http://www.ehaier.com/</td>
+            </tr>
+            <tr>
+                <td id="center">腾讯</td>
+                <td id="center">99999</td>
+                <td id="center">2014-03-14</td>
+                <td id="center">2015-03-14</td>
+                <td id="center">商家网页右下角</td>
+                <td id="center">48960</td>
+                <td id="center">http://www.qq.com/</td>
+            </tr>
+            <tr>
+                <td id="center">京东</td>
+                <td id="center">20000</td>
+                <td id="center">2014-05-25</td>
+                <td id="center">2014-08-25</td>
+                <td id="center">微信首页</td>
+                <td id="center">3000</td>
+                <td id="center">http://www.jd.com/</td>
+            </tr>
+            <tr>
+                <td id="center">爱奇艺</td>
+                <td id="center">40000</td>
+                <td id="center">2015-1-19</td>
+                <td id="center">2015-6-17</td>
+                <td id="center">商家APP跳转页</td>
+                <td id="center">15079</td>
+                <td id="center">http://www.aiqiyi.com/</td>
+            </tr>
+            <tr>
+                <td id="center">海尔</td>
+                <td id="center">100000</td>
+                <td id="center">2013-05-23</td>
+                <td id="center">2015-05-23</td>
+                <td id="center">商家APP首页</td>
+                <td id="center">48606</td>
+                <td id="center">http://www.ehaier.com/</td>
+            </tr>
+            <tr>
+                <td id="center">腾讯</td>
+                <td id="center">99999</td>
+                <td id="center">2014-03-14</td>
+                <td id="center">2015-03-14</td>
+                <td id="center">商家网页右下角</td>
+                <td id="center">48960</td>
+                <td id="center">http://www.qq.com/</td>
+            </tr>
+            <tr>
+                <td id="center">京东</td>
+                <td id="center">20000</td>
+                <td id="center">2014-05-25</td>
+                <td id="center">2014-08-25</td>
+                <td id="center">微信首页</td>
+                <td id="center">3000</td>
+                <td id="center">http://www.jd.com/</td>
+            </tr>
+            <tr>
+                <td id="center">爱奇艺</td>
+                <td id="center">40000</td>
+                <td id="center">2015-1-19</td>
+                <td id="center">2015-6-17</td>
+                <td id="center">商家APP跳转页</td>
+                <td id="center">15079</td>
+                <td id="center">http://www.aiqiyi.com/</td>
+            </tr>
+            <tr>
+                <td id="center">海尔</td>
+                <td id="center">100000</td>
+                <td id="center">2013-05-23</td>
+                <td id="center">2015-05-23</td>
+                <td id="center">商家APP首页</td>
+                <td id="center">48606</td>
+                <td id="center">http://www.ehaier.com/</td>
+            </tr>
+            <tr>
+                <td id="center">腾讯</td>
+                <td id="center">99999</td>
+                <td id="center">2014-03-14</td>
+                <td id="center">2015-03-14</td>
+                <td id="center">商家网页右下角</td>
+                <td id="center">48960</td>
+                <td id="center">http://www.qq.com/</td>
+            </tr>
+            <tr>
+                <td id="center">京东</td>
+                <td id="center">20000</td>
+                <td id="center">2014-05-25</td>
+                <td id="center">2014-08-25</td>
+                <td id="center">微信首页</td>
+                <td id="center">3000</td>
+                <td id="center">http://www.jd.com/</td>
+            </tr>
+            <tr>
+                <td id="center">爱奇艺</td>
+                <td id="center">40000</td>
+                <td id="center">2015-1-19</td>
+                <td id="center">2015-6-17</td>
+                <td id="center">商家APP跳转页</td>
+                <td id="center">15079</td>
+                <td id="center">http://www.aiqiyi.com/</td>
+            </tr>
+        </table>
+        </div>
+        </div>
+        <ul class="pager nopadding nomargin">
+            <li class=""><a href="advertising-history.html">上一页</a></li>
+            <li class=""><a href="advertising-history.html">1</a></li>
+            <li class=""><a href="advertising-history.html">2</a></li>
+            <li class=""><a href="advertising-history.html">3</a></li>
+            <li class=""><a href="advertising-history.html">...</a></li>
+            <li class=""><a href="advertising-history.html">末页</a></li>
+            <li class=""><a href="advertising-history.html">下一页</a></li>
+        </ul>
+</div>
+
+<div class="row-fluid">
+    <div id="footer" class="span12"> 2013 &copy; Matrix Admin. Brought to you by <a href="http://themedesigner.in/">Themedesigner.in</a>
+    </div>
+</div>
+
+<!--end-Footer-part-->
+
+<script src="js/excanvas.min.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.ui.custom.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.flot.min.js"></script>
+<script src="js/jquery.flot.resize.min.js"></script>
+<script src="js/jquery.peity.min.js"></script>
+<script src="js/fullcalendar.min.js"></script>
+<script src="js/matrix.js"></script>
+<script src="js/matrix.dashboard.js"></script>
+<script src="js/jquery.gritter.min.js"></script>
+<script src="js/matrix.interface.js"></script>
+<script src="js/matrix.chat.js"></script>
+<script src="js/jquery.validate.js"></script>
+<script src="js/matrix.form_validation.js"></script>
+<script src="js/jquery.wizard.js"></script>
+<script src="js/jquery.uniform.js"></script>
+<script src="js/select2.min.js"></script>
+<script src="js/matrix.popover.js"></script>
+<script src="js/jquery.dataTables.min.js"></script>
+<script src="js/matrix.tables.js"></script>
+<script src="js/time.js"></script>
+<script type="text/javascript">
+    // This function is called from the pop-up menus to transfer to
+    // a different page. Ignore if the value returned is a null string:
+    function goPage(newURL) {
+
+        // if url is empty, skip the menu dividers and reset the menu selection to default
+        if (newURL != "") {
+
+            // if url is "-", it is this page -- reset the menu:
+            if (newURL == "-") {
+                resetMenu();
+            }
+            // else, send page to designated URL
+            else {
+                document.location.href = newURL;
+            }
+        }
+    }
+
+    // resets the menu selection upon entry to this page:
+    function resetMenu() {
+        document.gomenu.selector.selectedIndex = 2;
+    }
+    window.onload = function () {
+        setInterval(function () {
+            document.getElementById("timer").innerHTML = (new Date()).toLocaleTimeString();
+        }, 1000);
+    };
+</script>
+
+
+</body>
+</html>
